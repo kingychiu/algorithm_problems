@@ -1,5 +1,6 @@
-import pytest
+""" Testing solution """
 
+import pytest
 from src.data_structures.leetcode.tree import parse_list_to_tree
 from src.maximum_depth_of_n_ary_tree.solution import Solution
 
@@ -14,5 +15,8 @@ from src.maximum_depth_of_n_ary_tree.solution import Solution
     ],
 )
 def test_solution(test_input, expected):
+    """
+        Checking Test Cases
+    """
     node = parse_list_to_tree(test_input)
     assert Solution().max_depth(node) == expected
