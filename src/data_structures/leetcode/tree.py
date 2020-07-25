@@ -18,10 +18,13 @@ class Node(Generic[TemplateType]):  # pylint: disable=too-few-public-methods
         self.children = children
 
 
-def parse_list_to_tree(values: List[TemplateType]) -> Node:
+def parse_list_to_tree(values: List[TemplateType]) -> Optional[Node]:
     """
         It takes an array of value and convert them into a tree
     """
+    if not values:
+        return None
+
     root = Node(values[0])
     parent_queue = [root]
 

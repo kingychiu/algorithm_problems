@@ -36,6 +36,8 @@ def test_parse_list_to_tree():
     """
         Test parse_list_to_tree
     """
+    assert parse_list_to_tree([]) is None
+
     input1 = [1]
     root = parse_list_to_tree(input1)
     assert root.val == 1
