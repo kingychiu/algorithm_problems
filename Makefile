@@ -1,6 +1,6 @@
 test:
 	coverage run --source src -m pytest
-	coverage report
+	coverage report -m
 
 lint:
 	pylint src
