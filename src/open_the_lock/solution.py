@@ -1,7 +1,7 @@
 """
     https://leetcode.com/problems/open-the-lock/
 """
-from typing import List, DefaultDict, Optional
+from typing import List, DefaultDict
 from collections import defaultdict
 
 

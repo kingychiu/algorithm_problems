@@ -1,7 +1,8 @@
 """
     https://leetcode.com/problems/rotting-oranges/
 """
-from typing import List, Tuple
+from collections import defaultdict
+from typing import List, Tuple, DefaultDict
 
 
 class Solution:
@@ -10,8 +11,27 @@ class Solution:
         Solution
     """
 
+    def next_moves(self, row, col, grid_width, grid_height) -> List[Tuple[int, int]]:
+        # pylint: disable=no-self-use
+        """ Get next moves of the flooding"""
+        next_nodes = []
+        can_go_up = row > 0
+        can_go_down = row < grid_height - 1
+        can_go_left = col > 0
+        can_go_right = col < grid_width - 1
+
+        if can_go_up:
+            next_nodes.append((row - 1, col))
+        if can_go_down:
+            next_nodes.append((row + 1, col))
+        if can_go_left:
+            next_nodes.append((row, col - 1))
+        if can_go_right:
+            next_nodes.append((row, col + 1))
+        return next_nodes
+
     def oranges_rotting(self, grid: List[List[int]]):
-        # pylint: disable=no-self-use too-many-locals too-many-branches
+        # pylint: disable=no-self-use
         """
             In a given grid, each cell can have one of three values:
 
@@ -32,15 +52,14 @@ class Solution:
         grid_height = len(grid)
         grid_width = len(grid[0])
         # Use BFS to start level-wise exploration from all initial rotten orange
-        visited = {}
+        visited: DefaultDict[int, DefaultDict[int, bool]] = \
+            defaultdict(lambda: defaultdict(lambda: False))
         # with a queue of tuples (row, col, minute_took)
         queue: List[Tuple[int, int, int]] = []
         num_fresh_orange = 0
 
         for row in range(grid_height):
-            visited[row] = {}
             for col in range(grid_width):
-                visited[row][col] = False  # initialize the BFS visited dict
                 if grid[row][col] == 2:  # Add the initial rotten orange to the BFS queue
                     queue.append((row, col, 0))
                 if grid[row][col] == 1:  # initialize the fresh orange counter
@@ -58,20 +77,7 @@ class Solution:
             total_minute_took = minute_took
 
             # filter all possible next moves
-            next_nodes = []
-            can_go_up = row > 0
-            can_go_down = row < grid_height - 1
-            can_go_left = col > 0
-            can_go_right = col < grid_width - 1
-
-            if can_go_up:
-                next_nodes.append((row - 1, col))
-            if can_go_down:
-                next_nodes.append((row + 1, col))
-            if can_go_left:
-                next_nodes.append((row, col - 1))
-            if can_go_right:
-                next_nodes.append((row, col + 1))
+            next_nodes = self.next_moves(row, col, grid_width, grid_height)
 
             for nrow, ncol in next_nodes:
                 # check visited or not
