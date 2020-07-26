@@ -14,8 +14,17 @@ Problems: https://leetcode.com/tag/breadth-first-search/
     - Tree Level-wise Traversal, BFS
 2. [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
 [[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/rotting_oranges/solution.py)]
-    - Graph Flooding, BFS
+    - Graph Flooding, Multiple Starting Points, BFS
 3. [Open the Lock](https://leetcode.com/problems/open-the-lock/)
 [[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/open_the_lock/solution.py)]
     - Graph Searching, BFS
+4. [Shortest Path in Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/)
+[[Code]()]
+    - Shortest Path, Uniform Path Cost, BFS
+5. [Network Delay Time](https://leetcode.com/problems/network-delay-time/)
+[[Code]()]
+    - Shortest Path, Different Path Costs, BFS
+6. [Walls and Gates](https://leetcode.com/problems/walls-and-gates/)
+[[Code]()]
+    - Shortest Path, Uniform Path Cost, Multiple Starting Points, BFS
 <hr>
