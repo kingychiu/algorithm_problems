@@ -24,7 +24,4 @@ Problems: https://leetcode.com/tag/breadth-first-search/
 5. [Network Delay Time](https://leetcode.com/problems/network-delay-time/)
 [[Code]()]
     - Shortest Path, Flooding, Different Path Costs, BFS
-6. [Walls and Gates](https://leetcode.com/problems/walls-and-gates/)
-[[Code]()]
-    - Shortest Path, Uniform Path Cost, Multiple Starting Points, BFS
 <hr>
