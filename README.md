@@ -12,5 +12,8 @@ Problems: https://leetcode.com/tag/breadth-first-search/
 1. [N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)
 [[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/n_ary_tree_level_order_traversal/solution.py)]
     - Tree Level wise traversal, BFS
+2. [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
+[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/rotting_oranges/solution.py)]
+    - Graph Propagation, BFS
     
 <hr>
