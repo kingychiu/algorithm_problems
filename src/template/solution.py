@@ -9,7 +9,7 @@ class Solution:
         Solution
     """
 
-    def func(self, test_input):
+    def get_submission(self, test_input):
         # pylint: disable=no-self-use
         """
             func
