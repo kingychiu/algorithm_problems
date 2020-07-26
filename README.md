@@ -15,5 +15,7 @@ Problems: https://leetcode.com/tag/breadth-first-search/
 2. [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
 [[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/rotting_oranges/solution.py)]
     - Graph Flooding, BFS
-    
+3. [Open the Lock](https://leetcode.com/problems/open-the-lock/)
+[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/open_the_lock/solution.py)]
+    - Graph Searching, BFS
 <hr>
