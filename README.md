@@ -5,3 +5,6 @@
 [[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/maximum_depth_of_n_ary_tree/solution.py)]
 2. [Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/)
 [[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/binary_tree_level_order_traversal_ii/solution.py)]
+#### Medium
+1. [N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)
+[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/n_ary_tree_level_order_traversal/solution.py)]
