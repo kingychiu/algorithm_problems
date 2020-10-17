@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alog-interview-linter
+spec:
+  containers:
+  - name: alog-interview-linter
+    image: alog-interview
+    command: ["make"]
+    args: ["k8s-lint"]

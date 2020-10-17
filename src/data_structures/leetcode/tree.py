@@ -3,7 +3,7 @@
 """
 from typing import List, Generic, Optional
 
-from src.common import TemplateType
+from common import TemplateType
 
 
 class Node(Generic[TemplateType]):  # pylint: disable=too-few-public-methods
