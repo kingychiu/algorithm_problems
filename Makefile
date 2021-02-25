@@ -7,5 +7,5 @@ test:
 	coverage report -m
 
 new_problem:
-	rm -rf ./src/${problem_name}
-	cp -r ./src/template ./src/${problem_name}
+	rm -rf ./src/${PROBLEM_NAME}
+	cp -r ./src/template ./src/${PROBLEM_NAME}
