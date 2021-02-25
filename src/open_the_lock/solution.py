@@ -1,8 +1,7 @@
 """
     https://leetcode.com/problems/open-the-lock/
 """
-from typing import List, DefaultDict
-from collections import defaultdict
+from typing import List
 
 
 class Solution:
@@ -47,13 +46,11 @@ class Solution:
             or -1 if it is impossible.
         """
         # hashmap for quick deadends lookup
-        deadends_dict: DefaultDict[str, bool] = defaultdict(lambda: False)
-        for deadend in deadends:
-            deadends_dict[deadend] = True
+        deadends = set(deadends)
 
         # BFS queue (d1, d2, d3, d4, cost)
         queue: List[List[int, int, int, int, int]] = [[0, 0, 0, 0, 0]]
-        visited: DefaultDict[str, bool] = defaultdict(lambda: False)
+        visited: Set[str] = set()
 
         while queue:
             # BFS dequeue
@@ -61,7 +58,7 @@ class Solution:
 
             # Construct a state key
             d_str = f'{d1}{d2}{d3}{d4}'
-            if deadends_dict[d_str]:
+            if d_str in deadends:
                 continue
 
             # if target found
@@ -73,8 +70,8 @@ class Solution:
 
             for move in next_moves:
                 d_str = f'{move[0]}{move[1]}{move[2]}{move[3]}'
-                if visited[d_str]:
+                if d_str in visited:
                     continue
-                visited[d_str] = True
+                visited.add(d_str)
                 queue.append(move)
         return -1

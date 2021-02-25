@@ -3,7 +3,7 @@
 """
 from collections import defaultdict
 from queue import PriorityQueue
-from typing import List
+from typing import List, DefaultDict
 
 
 class Solution:
@@ -25,17 +25,17 @@ class Solution:
 
         q = PriorityQueue()
         q.put((0, K, 0))  # (priority, node_idx, accumulated_time)
-        visited = defaultdict(lambda: False)
+        visited = set()
 
         time_spent = 0
         while not q.empty():
             _, node, acc_time = q.get()
-            if not visited[node]:
+            if node not in visited:
                 time_spent = max(time_spent, acc_time)
-                visited[node] = True
+                visited.add(node)
 
             for nxt_node in time_map[node].keys():
-                if not visited[nxt_node]:
+                if nxt_node not in visited:
                     nxt_time = time_map[node][nxt_node]
                     q.put((acc_time + nxt_time, nxt_node, acc_time + nxt_time))
 

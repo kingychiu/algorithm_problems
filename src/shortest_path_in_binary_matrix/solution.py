@@ -1,8 +1,7 @@
 """
     https://leetcode.com/problems/shortest-path-in-binary-matrix/
 """
-from collections import defaultdict
-from typing import List, DefaultDict, Tuple
+from typing import List, Tuple
 
 
 class Solution:
@@ -19,7 +18,7 @@ class Solution:
         """
         # BFS setup
         queue: List[Tuple[int, int, int]] = [(0, 0, 1)]
-        visited: DefaultDict[Tuple[int, int], bool] = defaultdict(lambda: False)
+        visited: Set[int, int] = set()
         target_y = len(grid) - 1
         if target_y == -1:
             return 0
@@ -37,7 +36,7 @@ class Solution:
                 new_x = x + dir_x
                 new_y = y + dir_y
                 if target_x >= new_x >= 0 and target_y >= new_y >= 0 \
-                        and grid[new_y][new_x] == 0 and not visited[(new_x, new_y)]:
-                    visited[(new_x, new_y)] = True
+                        and grid[new_y][new_x] == 0 and (new_x, new_y) not in visited:
+                    visited.add((new_x, new_y))
                     queue.append((new_x, new_y, cost + 1))
         return -1

@@ -1,8 +1,7 @@
 """
     https://leetcode.com/problems/rotting-oranges/
 """
-from collections import defaultdict
-from typing import List, Tuple, DefaultDict
+from typing import List, Tuple, Set
 
 
 class Solution:
@@ -52,8 +51,7 @@ class Solution:
         grid_height = len(grid)
         grid_width = len(grid[0])
         # Use BFS to start level-wise exploration from all initial rotten orange
-        visited: DefaultDict[int, DefaultDict[int, bool]] = \
-            defaultdict(lambda: defaultdict(lambda: False))
+        visited: Set[int, int] = set()
         # with a queue of tuples (row, col, minute_took)
         queue: List[Tuple[int, int, int]] = []
         num_fresh_orange = 0
@@ -81,10 +79,9 @@ class Solution:
 
             for nrow, ncol in next_nodes:
                 # check visited or not
-                if visited[nrow][ncol]:
+                if (nrow, ncol) in visited:
                     continue
-                visited[nrow][ncol] = True
-
+                visited.add((nrow, ncol))
                 # Only move to fresh orange
                 if grid[nrow][ncol] == 1:
                     num_fresh_orange -= 1
