@@ -4,7 +4,7 @@ Problems: https://leetcode.com/tag/two-pointers/
 
 ### Hard
 
-1. [Maximum Number of Visible Points](https://leetcode.com/problems/maximum-number-of-visible-points/)[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/maximum_depth_of_n_ary_tree/solution.py)]
+1. [Maximum Number of Visible Points](https://leetcode.com/problems/maximum-number-of-visible-points/)[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/maximum_number_of_visible_points/solution.py)]
     - Geometry, Circular, Two Pointers, Two Pointers
 
 <hr>
