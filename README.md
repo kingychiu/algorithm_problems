@@ -5,7 +5,10 @@ Problems: https://leetcode.com/tag/two-pointers/
 ### Hard
 
 1. [Maximum Number of Visible Points](https://leetcode.com/problems/maximum-number-of-visible-points/)[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/maximum_number_of_visible_points/solution.py)]
-    - Geometry, Circular, Two Pointers, Two Pointers
+    - Geometry, Circular Two Pointers, Two Pointers
+
+2. [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/minimum_window_substring/solution.py)]
+    - Sliding Window with Counters, Sliding Window, Two Pointers
 
 <hr>
 ## BFS
