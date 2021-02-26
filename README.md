@@ -8,7 +8,10 @@ Problems: https://leetcode.com/tag/two-pointers/
     - Geometry, Circular Two Pointers, Two Pointers
 
 2. [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/minimum_window_substring/solution.py)]
-    - Sliding Window with Counters, Sliding Window, Two Pointers
+    - Sliding Window with counters, Sliding Window, Two Pointers
+
+3. [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)[[Code](https://github.com/kingychiu/algorithm_problems/blob/master/src/trapping_rain_water/solution.py)]
+    - Sliding Window with clean up, Sliding Window, Two Pointers
 
 <hr>
 ## BFS
