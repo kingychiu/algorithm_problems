@@ -45,18 +45,12 @@ class Solution:
         # Sort the points by their angle
         point_angles.sort()
 
-        if len(point_angles) == 0:
-            return num_always_visible
-
         start = 0
-        end = 0
         max_visible = 0
 
-        while True:
+        for end in range(0, len(point_angles)):
             if point_angles[start] >= 360:
                 break
-
-            end += 1
             if point_angles[end] - point_angles[start] > angle:
                 start += 1
             
