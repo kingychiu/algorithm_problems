@@ -1,6 +1,6 @@
 ## Github Action Status
 
-![Python Linting and Testing](https://github.com/github/docs/actions/workflows/lint_and_test.yml/badge.svg)
+![Python 3.6, 3.7, 3.8, 3.9 Linting and Testing](https://github.com/kingychiu/algorithm_problems/actions/workflows/lint_and_test.yaml/badge.svg)
 
 ## Two Pointers
 
