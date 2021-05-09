@@ -1,5 +1,5 @@
 """
-    <problem link>
+    Quick Sort with recursion
 """
 
 
