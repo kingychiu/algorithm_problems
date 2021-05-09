@@ -27,6 +27,6 @@ from .solution import Solution
 )
 def test_solution(test_input, expected):
     """
-        Checking Test Cases
+    Checking Test Cases
     """
     assert Solution().trap(test_input) == expected

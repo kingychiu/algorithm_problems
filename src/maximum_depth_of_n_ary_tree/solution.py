@@ -9,13 +9,13 @@ from src.data_structures.leetcode.tree import Node
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
     def max_depth(self, root: Optional[Node]) -> int:
         # pylint: disable=no-self-use
         """
-            Return the max depth of the given N-ary Tree
+        Return the max depth of the given N-ary Tree
         """
         if not root:
             return 0

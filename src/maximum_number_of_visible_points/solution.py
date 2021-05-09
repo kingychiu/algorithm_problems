@@ -1,22 +1,24 @@
 """
     https://leetcode.com/problems/maximum-number-of-visible-points/
 """
-from typing import List, Tuple, Optional
+from typing import List
 
 import math
-from src.data_structures.leetcode.tree import Node
 
 
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
-    def visible_points(self, points: List[List[int]], angle: int, location: List[int]) -> int:
+    def visible_points(
+        self, points: List[List[int]], angle: int, location: List[int]
+    ) -> int:
         # pylint: disable=no-self-use
         """
-            Return the max number of points the agent can see at the given location and with the given wide angle
+        Return the max number of points the agent can see at the given location
+        and with the given wide angle
         """
         num_points = len(points)
         num_always_visible = 0
@@ -53,7 +55,7 @@ class Solution:
                 break
             if point_angles[end] - point_angles[start] > angle:
                 start += 1
-            
+
             # record
             max_visible = max(max_visible, end - start + 1)
 
