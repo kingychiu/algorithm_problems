@@ -8,8 +8,11 @@ from .solution import Solution
 @pytest.mark.parametrize(
     "test_input",
     [
+        [1],
+        [2, 1],
         [2, 1, 3],
         [10, 80, 30, 90, 40, 50, 70],
+        [1, 2, 3, 4],
     ],
 )
 def test_solution(test_input):

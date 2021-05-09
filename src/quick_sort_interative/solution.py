@@ -9,7 +9,8 @@ class Solution:
     Solution
     """
 
-    def _partition(self, start, end, arr):
+    @staticmethod
+    def _partition(start, end, arr):
         pivot = start
         while True:
             # keep looking for a value > the pivot
@@ -24,7 +25,7 @@ class Solution:
 
             if start < end:  # swap
                 arr[start], arr[end] = arr[end], arr[start]
-            else:
+            if start >= end:
                 break
         # move the pivot to the correct location.
         arr[end], arr[pivot] = arr[pivot], arr[end]
