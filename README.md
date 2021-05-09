@@ -1,3 +1,7 @@
+## Github Action Status
+
+![Python Linting and Testing](https://github.com/github/docs/actions/workflows/lint_and_test.yml/badge.svg)
+
 ## Two Pointers
 
 Problems: https://leetcode.com/tag/two-pointers/
@@ -14,6 +18,7 @@ Problems: https://leetcode.com/tag/two-pointers/
     - Sliding Window with clean up, Sliding Window, Two Pointers
 
 <hr>
+
 ## BFS
 
 Problems: https://leetcode.com/tag/breadth-first-search/
