@@ -31,14 +31,12 @@ class Solution:
                 arr[result_ptr] = sorted_right[right_ptr]
                 right_ptr += 1
             result_ptr += 1
-        
         # clean up left
         while left_ptr < left_length:
             # pick left
             arr[result_ptr] = sorted_left[left_ptr]
             left_ptr += 1
             result_ptr += 1
-        
         # clean up right
         while right_ptr < right_length:
             # pick right
