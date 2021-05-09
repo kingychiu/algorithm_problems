@@ -19,8 +19,6 @@ class Solution:
         sorted_right = self._sort(arr[mid:])
         left_length = len(sorted_left)
         right_length = len(sorted_right)
-        print("sorted_left", sorted_left)
-        print("sorted_right", sorted_right)
         # merge
         result_ptr = left_ptr = right_ptr = 0
         while left_ptr < left_length and right_ptr < right_length:
