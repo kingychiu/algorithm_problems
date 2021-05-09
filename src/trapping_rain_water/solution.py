@@ -4,8 +4,6 @@
 from typing import List, Tuple, Optional
 
 import math
-from src.data_structures.leetcode.tree import Node
-
 
 class Solution:
     # pylint: disable=too-few-public-methods
