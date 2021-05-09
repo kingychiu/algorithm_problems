@@ -9,13 +9,13 @@ from src.data_structures.leetcode.tree import Node
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
     def level_order(self, root: Optional[Node] = None) -> List[List[int]]:
         # pylint: disable=no-self-use
         """
-            Given an n-ary tree, return the level order traversal of its nodes' values.
+        Given an n-ary tree, return the level order traversal of its nodes' values.
         """
         if root is None:
             return []

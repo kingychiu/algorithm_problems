@@ -16,6 +16,6 @@ from .solution import Solution
 )
 def test_solution(test_input, expected):
     """
-        Checking Test Cases
+    Checking Test Cases
     """
     assert Solution().oranges_rotting(test_input) == expected

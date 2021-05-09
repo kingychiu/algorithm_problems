@@ -2,14 +2,16 @@
     Tests for tree-like data structures.
 """
 
-from src.data_structures.leetcode.tree import (Node,
-                                               parse_list_to_n_ary_tree,
-                                               parse_list_to_binary_tree, )
+from src.data_structures.leetcode.tree import (
+    Node,
+    parse_list_to_n_ary_tree,
+    parse_list_to_binary_tree,
+)
 
 
 def test_node():
     """
-        Test Node Class
+    Test Node Class
     """
     node = Node(1)
     assert node.val == 1
@@ -18,13 +20,9 @@ def test_node():
 
 def test_n_ary_tree():
     """
-        Test Node Class with children
+    Test Node Class with children
     """
-    root = Node(1,
-                children=[
-                    Node(2),
-                    Node(4, children=[Node(1)])
-                ])
+    root = Node(1, children=[Node(2), Node(4, children=[Node(1)])])
     assert root.val == 1
     assert root.children is not None
     assert root.children[0].val == 2
@@ -36,7 +34,7 @@ def test_n_ary_tree():
 
 def test_parse_list_to_n_ary_tree():
     """
-        Test parse_list_to_n_ary_tree
+    Test parse_list_to_n_ary_tree
     """
     assert parse_list_to_n_ary_tree([]) is None
 
@@ -67,8 +65,7 @@ def test_parse_list_to_n_ary_tree():
     assert root.children[0].children[0].val == 5
     assert root.children[0].children[0].children is None
 
-    input5 = [1, None, 2, 3, 4, 5, None, None, 6, 7,
-              None, 8, None, 9, 10]
+    input5 = [1, None, 2, 3, 4, 5, None, None, 6, 7, None, 8, None, 9, 10]
     root = parse_list_to_n_ary_tree(input5)
     assert root.val == 1
     assert [child.val for child in root.children] == [2, 3, 4, 5]
@@ -80,7 +77,7 @@ def test_parse_list_to_n_ary_tree():
 
 def test_parse_list_to_binary_tree():
     """
-        Test test_parse_list_to_binary_tree
+    Test test_parse_list_to_binary_tree
     """
     assert parse_list_to_binary_tree([]) is None
 

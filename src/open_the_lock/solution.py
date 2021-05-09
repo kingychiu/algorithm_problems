@@ -1,19 +1,19 @@
 """
     https://leetcode.com/problems/open-the-lock/
 """
-from typing import List
+from typing import List, Set
 
 
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
     def next_digit(self, digit, moving_up=True) -> int:  # pylint: disable=invalid-name
         # pylint: disable=no-self-use
         """
-            It takes a digit and return the next digit.
+        It takes a digit and return the next digit.
         """
 
         if moving_up and digit == 9:
@@ -26,7 +26,7 @@ class Solution:
     def next_moves(self, d1, d2, d3, d4, cost) -> List[List[int]]:
         # pylint: disable=no-self-use invalid-name too-many-arguments
         """
-            It takes next moves from the current state.
+        It takes next moves from the current state.
         """
         next_moves = []
         for idx, d in enumerate([d1, d2, d3, d4]):  # pylint: disable=invalid-name
@@ -41,9 +41,9 @@ class Solution:
     def open_lock(self, deadends: List[str], target: str) -> int:
         # pylint: disable=no-self-use
         """
-            Given a target representing the value of the wheels that will unlock the lock,
-            return the minimum total number of turns required to open the lock,
-            or -1 if it is impossible.
+        Given a target representing the value of the wheels that will unlock the lock,
+        return the minimum total number of turns required to open the lock,
+        or -1 if it is impossible.
         """
         # hashmap for quick deadends lookup
         deadends = set(deadends)
@@ -57,7 +57,7 @@ class Solution:
             d1, d2, d3, d4, cost = queue.pop(0)  # pylint: disable=invalid-name
 
             # Construct a state key
-            d_str = f'{d1}{d2}{d3}{d4}'
+            d_str = f"{d1}{d2}{d3}{d4}"
             if d_str in deadends:
                 continue
 
@@ -69,7 +69,7 @@ class Solution:
             next_moves = self.next_moves(d1, d2, d3, d4, cost)
 
             for move in next_moves:
-                d_str = f'{move[0]}{move[1]}{move[2]}{move[3]}'
+                d_str = f"{move[0]}{move[1]}{move[2]}{move[3]}"
                 if d_str in visited:
                     continue
                 visited.add(d_str)

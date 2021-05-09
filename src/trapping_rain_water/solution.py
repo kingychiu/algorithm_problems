@@ -1,27 +1,27 @@
 """
     https://leetcode.com/problems/trapping-rain-water/
 """
-from typing import List, Tuple, Optional
+from typing import List
 
-import math
 
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
     def trap(self, height: List[int]) -> int:
         # pylint: disable=no-self-use
         """
-            Given n non-negative integers representing an elevation map where the width of each bar is 1,
-            compute how much water it can trap after raining.
+        Given n non-negative integers representing an elevation map
+        where the width of each bar is 1,
+        compute how much water it can trap after raining.
         """
 
         start = 0
         temp_count = 0
         trapped_count = 0
-        for end in range(len(height)):
+        for end in range(len(height)):  # pylint: disable=consider-using-enumerate
             if height[end] < height[start]:
                 # temp water trapped
                 temp_count += height[start] - height[end]

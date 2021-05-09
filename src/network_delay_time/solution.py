@@ -3,21 +3,21 @@
 """
 from collections import defaultdict
 from queue import PriorityQueue
-from typing import List, DefaultDict
+from typing import List
 
 
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
     def get_submission(self, times: List[List[int]], N: int, K: int) -> int:
         # pylint: disable=no-self-use
         """
-            Now, we send a signal from a certain node K.
-            How long will it take for all nodes to receive the signal?
-            If it is impossible, return -1.
+        Now, we send a signal from a certain node K.
+        How long will it take for all nodes to receive the signal?
+        If it is impossible, return -1.
         """
         time_map = defaultdict(dict)
         for time in times:
@@ -41,5 +41,4 @@ class Solution:
 
         if len(visited) == N:
             return time_spent
-        else:
-            return -1
+        return -1

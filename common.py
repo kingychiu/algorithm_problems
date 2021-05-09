@@ -3,4 +3,4 @@
 """
 from typing import TypeVar
 
-TemplateType = TypeVar('TemplateType')
+TemplateType = TypeVar("TemplateType")

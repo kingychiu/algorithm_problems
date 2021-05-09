@@ -7,7 +7,7 @@ from typing import List, Tuple, Set
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
     def next_moves(self, row, col, grid_width, grid_height) -> List[Tuple[int, int]]:
@@ -32,16 +32,16 @@ class Solution:
     def oranges_rotting(self, grid: List[List[int]]):
         # pylint: disable=no-self-use
         """
-            In a given grid, each cell can have one of three values:
+        In a given grid, each cell can have one of three values:
 
-            the value 0 representing an empty cell;
-            the value 1 representing a fresh orange;
-            the value 2 representing a rotten orange.
-            Every minute, any fresh orange that is adjacent (4-directionally)
-            to a rotten orange becomes rotten.
+        the value 0 representing an empty cell;
+        the value 1 representing a fresh orange;
+        the value 2 representing a rotten orange.
+        Every minute, any fresh orange that is adjacent (4-directionally)
+        to a rotten orange becomes rotten.
 
-            Return the minimum number of minutes that must elapse until no cell has a fresh orange.
-              If this is impossible, return -1 instead.
+        Return the minimum number of minutes that must elapse until no cell has a fresh orange.
+          If this is impossible, return -1 instead.
         """
         if len(grid) == 0:
             return 0
@@ -58,7 +58,9 @@ class Solution:
 
         for row in range(grid_height):
             for col in range(grid_width):
-                if grid[row][col] == 2:  # Add the initial rotten orange to the BFS queue
+                if (
+                    grid[row][col] == 2
+                ):  # Add the initial rotten orange to the BFS queue
                     queue.append((row, col, 0))
                 if grid[row][col] == 1:  # initialize the fresh orange counter
                     num_fresh_orange += 1

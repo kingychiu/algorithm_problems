@@ -1,3 +1,9 @@
+[MASTER]
+
+disable=
+    invalid-name,
+    consider-using-enumerate
+
 [SIMILARITIES]
 
 # Minimum lines number of a similarity.
@@ -11,3 +17,4 @@ ignore-docstrings=yes
 
 # Ignore imports when computing similarities.
 ignore-imports=yes
+

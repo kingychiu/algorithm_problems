@@ -1,20 +1,20 @@
 """
     https://leetcode.com/problems/shortest-path-in-binary-matrix/
 """
-from typing import List, Tuple
+from typing import List, Tuple, Set
 
 
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
     def get_submission(self, grid: List[List[int]]) -> int:
         # pylint: disable=no-self-use
         """
-            Return the length of the shortest such clear path from top-left to bottom-right.
-            If such a path does not exist, return -1.
+        Return the length of the shortest such clear path from top-left to bottom-right.
+        If such a path does not exist, return -1.
         """
         # BFS setup
         queue: List[Tuple[int, int, int]] = [(0, 0, 1)]
@@ -26,7 +26,16 @@ class Solution:
             return -1
         target_x = len(grid[0]) - 1
 
-        directions = [(1, 0), (-1, 0), (0, 1), (0, -1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
+        directions = [
+            (1, 0),
+            (-1, 0),
+            (0, 1),
+            (0, -1),
+            (-1, -1),
+            (-1, 1),
+            (1, -1),
+            (1, 1),
+        ]
         while queue:
             # BFS dequeue
             x, y, cost = queue.pop(0)  # pylint: disable=invalid-name
@@ -35,8 +44,12 @@ class Solution:
             for dir_x, dir_y in directions:
                 new_x = x + dir_x
                 new_y = y + dir_y
-                if target_x >= new_x >= 0 and target_y >= new_y >= 0 \
-                        and grid[new_y][new_x] == 0 and (new_x, new_y) not in visited:
+                if (
+                    target_x >= new_x >= 0
+                    and target_y >= new_y >= 0
+                    and grid[new_y][new_x] == 0
+                    and (new_x, new_y) not in visited
+                ):
                     visited.add((new_x, new_y))
                     queue.append((new_x, new_y, cost + 1))
         return -1

@@ -6,12 +6,12 @@
 class Solution:
     # pylint: disable=too-few-public-methods
     """
-        Solution
+    Solution
     """
 
     def get_submission(self, test_input):
         # pylint: disable=no-self-use
         """
-            func
+        func
         """
         return test_input
