@@ -3,7 +3,7 @@
 """
 from typing import List, Optional, Tuple, Any
 
-from src.data_structures.leetcode.tree import Node, TreeNode
+from src.data_structures.leetcode.tree import TreeNode
 
 
 class Solution:
