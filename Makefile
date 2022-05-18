@@ -1,10 +1,13 @@
 
 lint:
-	pylint src
+	poetry run pylint src
+
+type-check:
+	poetry run mypy src
 
 test:
-	coverage run --source src -m pytest
-	coverage report -m
+	poetry run coverage run --source src -m pytest
+	poetry run coverage report -m
 
 new_problem:
 	rm -rf ./src/${PROBLEM_NAME}

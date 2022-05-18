@@ -1,7 +1,7 @@
 """
     https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
 """
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Any
 
 from src.data_structures.leetcode.tree import Node, TreeNode
 
@@ -12,13 +12,13 @@ class Solution:
     Solution
     """
 
-    def level_order_bottom(self, root: Optional[Node]) -> List[List[int]]:
+    def level_order_bottom(self, root: Optional[TreeNode]) -> List[List[Any]]:
         # pylint: disable=no-self-use
         """
         Given a binary tree, return the bottom-up level order traversal of its nodes' values.
         (ie, from left to right, level by level from leaf to root).
         """
-        results = []
+        results: List[List[Any]] = []
         if not root:
             return results
 

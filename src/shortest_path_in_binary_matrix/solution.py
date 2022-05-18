@@ -18,7 +18,7 @@ class Solution:
         """
         # BFS setup
         queue: List[Tuple[int, int, int]] = [(0, 0, 1)]
-        visited: Set[int, int] = set()
+        visited: Set[Tuple[int, int]] = set()
         target_y = len(grid) - 1
         if target_y == -1:
             return 0

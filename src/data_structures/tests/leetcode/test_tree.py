@@ -1,5 +1,5 @@
 """
-    Tests for tree-like data structures.
+    Tests for Leetcode tree-like data structures.
 """
 
 from src.data_structures.leetcode.tree import (

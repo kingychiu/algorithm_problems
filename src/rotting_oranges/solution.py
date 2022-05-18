@@ -12,7 +12,7 @@ class Solution:
 
     def next_moves(self, row, col, grid_width, grid_height) -> List[Tuple[int, int]]:
         # pylint: disable=no-self-use
-        """ Get next moves of the flooding"""
+        """Get next moves of the flooding"""
         next_nodes = []
         can_go_up = row > 0
         can_go_down = row < grid_height - 1
@@ -51,7 +51,7 @@ class Solution:
         grid_height = len(grid)
         grid_width = len(grid[0])
         # Use BFS to start level-wise exploration from all initial rotten orange
-        visited: Set[int, int] = set()
+        visited: Set[Tuple[int, int]] = set()
         # with a queue of tuples (row, col, minute_took)
         queue: List[Tuple[int, int, int]] = []
         num_fresh_orange = 0

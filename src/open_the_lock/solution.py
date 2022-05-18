@@ -46,10 +46,10 @@ class Solution:
         or -1 if it is impossible.
         """
         # hashmap for quick deadends lookup
-        deadends = set(deadends)
+        unique_deadends = set(deadends)
 
         # BFS queue (d1, d2, d3, d4, cost)
-        queue: List[List[int, int, int, int, int]] = [[0, 0, 0, 0, 0]]
+        queue: List[List[int]] = [[0, 0, 0, 0, 0]]
         visited: Set[str] = set()
 
         while queue:
@@ -58,7 +58,7 @@ class Solution:
 
             # Construct a state key
             d_str = f"{d1}{d2}{d3}{d4}"
-            if d_str in deadends:
+            if d_str in unique_deadends:
                 continue
 
             # if target found

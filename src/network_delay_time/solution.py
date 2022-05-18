@@ -3,7 +3,7 @@
 """
 from collections import defaultdict
 from queue import PriorityQueue
-from typing import List
+from typing import List, Dict
 
 
 class Solution:
@@ -19,11 +19,11 @@ class Solution:
         How long will it take for all nodes to receive the signal?
         If it is impossible, return -1.
         """
-        time_map = defaultdict(dict)
+        time_map: Dict[int, Dict[int, int]] = defaultdict(dict)
         for time in times:
             time_map[time[0]][time[1]] = time[2]
 
-        q = PriorityQueue()
+        q: PriorityQueue = PriorityQueue()
         q.put((0, K, 0))  # (priority, node_idx, accumulated_time)
         visited = set()
 

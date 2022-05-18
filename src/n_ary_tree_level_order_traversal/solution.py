@@ -1,7 +1,7 @@
 """
     https://leetcode.com/problems/n-ary-tree-level-order-traversal/
 """
-from typing import Optional, List, Tuple
+from typing import Optional, List, Tuple, Any
 
 from src.data_structures.leetcode.tree import Node
 
@@ -12,7 +12,7 @@ class Solution:
     Solution
     """
 
-    def level_order(self, root: Optional[Node] = None) -> List[List[int]]:
+    def level_order(self, root: Optional[Node] = None) -> List[List[Any]]:
         # pylint: disable=no-self-use
         """
         Given an n-ary tree, return the level order traversal of its nodes' values.
@@ -24,7 +24,7 @@ class Solution:
         queue: List[Tuple[Node, int]] = []
         queue.append((root, 1))
 
-        results = []
+        results: List[List[Any]] = []
         current_result_len = 0
 
         while queue:

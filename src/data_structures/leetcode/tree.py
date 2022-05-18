@@ -16,8 +16,8 @@ class Node(Generic[TemplateType]):  # pylint: disable=too-few-public-methods
         val: Optional[TemplateType] = None,
         children: Optional[List["Node"]] = None,
     ):
-        self.val = val
-        self.children = children
+        self.val: Optional[TemplateType] = val
+        self.children: Optional[List["Node"]] = children
 
 
 class TreeNode(Generic[TemplateType]):  # pylint: disable=too-few-public-methods
@@ -26,9 +26,9 @@ class TreeNode(Generic[TemplateType]):  # pylint: disable=too-few-public-methods
     """
 
     def __init__(self, val: Optional[TemplateType] = None):
-        self.val = val
-        self.left = None
-        self.right = None
+        self.val: Optional[TemplateType] = val
+        self.left: Optional[TreeNode[TemplateType]] = None
+        self.right: Optional[TreeNode[TemplateType]] = None
 
 
 def parse_list_to_n_ary_tree(values: List[TemplateType]) -> Optional[Node]:
@@ -40,12 +40,12 @@ def parse_list_to_n_ary_tree(values: List[TemplateType]) -> Optional[Node]:
 
     root = Node(values[0])
     parent_queue = [root]
-    curr_parent = None
+    curr_parent: Optional[Node[TemplateType]] = None
     for idx in range(1, len(values)):
         value = values[idx]
         if value is None:
             curr_parent = parent_queue.pop(0)
-        else:
+        elif curr_parent:
             node = Node(value)
             parent_queue.append(node)
             if curr_parent.children:
