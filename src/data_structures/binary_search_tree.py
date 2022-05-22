@@ -95,12 +95,6 @@ def inorder_iterative(node: BinarySearchTreeNode):
         # left most child
         curr = stack.get()
         results.append((curr.val, curr.count))
-
-        # parent of the left most child
-        if not stack.empty():
-            curr = stack.get()
-            results.append((curr.val, curr.count))
-
         # Left most child of the right subtree
         _dive(curr.right)
 
@@ -130,11 +124,6 @@ def preorder_iterative(node: BinarySearchTreeNode):
     while not stack.empty():
         # left most child
         curr = stack.get()
-
-        # parent of the left most child
-        if not stack.empty():
-            curr = stack.get()
-
         # Left most child of the right subtree
         _dive(curr.right)
 
