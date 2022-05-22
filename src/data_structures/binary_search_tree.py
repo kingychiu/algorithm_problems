@@ -225,11 +225,12 @@ def delete_recursive(root: Optional[BinarySearchTreeNode], val: int):
         root.count -= 1
         return root
 
-    # We want to keep root < right, so we need the smallest value in the right subtree
     if root.right is None:
         # If the right sub tree is empty, replace with the left sub tree
         return root.left
 
+    # Imagine we have [1, 2, 3, 4, 5]
+    # if we want to delete 3, we need shifting 4, and 5
     # Locate the smallest right node
     right_smallest_node = smallest_recursive(root.right)
     # If we found the smallest right node
