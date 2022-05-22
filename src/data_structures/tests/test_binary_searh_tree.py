@@ -55,7 +55,7 @@ def test_tree_traversal():
     assert [result[1] for result in results] == [1] * len(results)
 
 
-def test_tree_insert():
+def test_tree_insert_recursive():
     """
     Test Binary Search Tree
                8
@@ -81,20 +81,73 @@ def test_tree_insert():
     root.right.right = binary_search_tree.BinarySearchTreeNode(14)
     root.right.right.left = binary_search_tree.BinarySearchTreeNode(13)
 
-    binary_search_tree.insert(root, 0)
+    binary_search_tree.insert_recursive(root, 0)
     results = binary_search_tree.inorder_recursive(root)
     assert [result[0] for result in results] == [0, 1, 3, 4, 6, 7, 8, 10, 13, 14]
 
-    binary_search_tree.insert(root, 9)
+    binary_search_tree.insert_recursive(root, 9)
     results = binary_search_tree.inorder_recursive(root)
     assert [result[0] for result in results] == [0, 1, 3, 4, 6, 7, 8, 9, 10, 13, 14]
 
-    binary_search_tree.insert(root, 1)
+    binary_search_tree.insert_recursive(root, 1)
     results = binary_search_tree.inorder_recursive(root)
     assert [result[0] for result in results] == [0, 1, 3, 4, 6, 7, 8, 9, 10, 13, 14]
     assert root.left.left.count == 2
 
-    binary_search_tree.insert(root, 15)
+    binary_search_tree.insert_recursive(root, 15)
     results = binary_search_tree.inorder_recursive(root)
     assert [result[0] for result in results] == [0, 1, 3, 4, 6, 7, 8, 9, 10, 13, 14, 15]
     assert root.left.left.count == 2
+
+    root = binary_search_tree.insert_recursive(None, 0)
+    results = binary_search_tree.inorder_recursive(root)
+    assert [result[0] for result in results] == [0]
+
+
+def test_tree_insert_iterative():
+    """
+    Test Binary Search Tree
+               8
+             /   \
+            /     \
+           3       10
+          / \       \
+         /   \       \
+        1     6       14
+             / \     /
+            /   \   /
+           4     7 13
+    """
+
+    root = binary_search_tree.BinarySearchTreeNode(8)
+    root.left = binary_search_tree.BinarySearchTreeNode(3)
+    root.left.left = binary_search_tree.BinarySearchTreeNode(1)
+    root.left.right = binary_search_tree.BinarySearchTreeNode(6)
+    root.left.right.left = binary_search_tree.BinarySearchTreeNode(4)
+    root.left.right.right = binary_search_tree.BinarySearchTreeNode(7)
+
+    root.right = binary_search_tree.BinarySearchTreeNode(10)
+    root.right.right = binary_search_tree.BinarySearchTreeNode(14)
+    root.right.right.left = binary_search_tree.BinarySearchTreeNode(13)
+
+    binary_search_tree.insert_iterative(root, 0)
+    results = binary_search_tree.inorder_recursive(root)
+    assert [result[0] for result in results] == [0, 1, 3, 4, 6, 7, 8, 10, 13, 14]
+
+    binary_search_tree.insert_iterative(root, 9)
+    results = binary_search_tree.inorder_recursive(root)
+    assert [result[0] for result in results] == [0, 1, 3, 4, 6, 7, 8, 9, 10, 13, 14]
+
+    binary_search_tree.insert_iterative(root, 1)
+    results = binary_search_tree.inorder_recursive(root)
+    assert [result[0] for result in results] == [0, 1, 3, 4, 6, 7, 8, 9, 10, 13, 14]
+    assert root.left.left.count == 2
+
+    binary_search_tree.insert_iterative(root, 15)
+    results = binary_search_tree.inorder_recursive(root)
+    assert [result[0] for result in results] == [0, 1, 3, 4, 6, 7, 8, 9, 10, 13, 14, 15]
+    assert root.left.left.count == 2
+
+    root = binary_search_tree.insert_iterative(None, 0)
+    results = binary_search_tree.inorder_recursive(root)
+    assert [result[0] for result in results] == [0]

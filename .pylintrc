@@ -2,8 +2,8 @@
 
 disable=
     invalid-name,
-    consider-using-enumerate
-
+    consider-using-enumerate,
+    anomalous-backslash-in-string
 [SIMILARITIES]
 
 # Minimum lines number of a similarity.

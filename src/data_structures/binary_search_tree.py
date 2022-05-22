@@ -18,6 +18,7 @@ class BinarySearchTreeNode:  # pylint: disable=too-few-public-methods
 def inorder_recursive(node: BinarySearchTreeNode):
     """
     (Left, Node, Right)
+    It is helpful when we want to print out the BST values in order
     """
     results = []
     # Left
@@ -34,6 +35,8 @@ def inorder_recursive(node: BinarySearchTreeNode):
 def preorder_recursive(node: BinarySearchTreeNode):
     """
     (Root, Left, Right)
+    It is helpful when we want to clone a BST,
+    Create a new BST B by inserting the results from preorder traversing BST A
     """
     results = []
     # Node
@@ -66,6 +69,7 @@ def postorder_recursive(node: BinarySearchTreeNode):
 def inorder_iterative(node: BinarySearchTreeNode):
     """
     (Left, Node, Right)
+    It is helpful when we want to print out the BST values in order
     """
     results = []
 
@@ -89,6 +93,8 @@ def inorder_iterative(node: BinarySearchTreeNode):
 def preorder_iterative(node: BinarySearchTreeNode):
     """
     (Node, Left, Right)
+    It is helpful when we want to clone a BST,
+    Create a new BST B by inserting the results from preorder traversing BST A
     """
     results = []
 
@@ -130,30 +136,55 @@ def levelorder(node: BinarySearchTreeNode):
     return results
 
 
-def insert(root: BinarySearchTreeNode, val: int):
+def insert_recursive(root: BinarySearchTreeNode, val: int):
     """Standard BST Insertion"""
     # Left Value < Root Value < Right Vale
-    q: Queue = Queue()
-    q.put(root)
+    if root is None:
+        return BinarySearchTreeNode(val)
 
-    while not q.empty():
-        curr = q.get()
+    if root.val == val:
+        root.count += 1
+    elif val < root.val:
+        root.left = insert_recursive(root.left, val)
+    else:
+        root.right = insert_recursive(root.right, val)
+    return root
+
+
+def insert_iterative(root: BinarySearchTreeNode, val: int):
+    """Standard BST Insertion"""
+    # Left Value < Root Value < Right Vale
+    if root is None:
+        return BinarySearchTreeNode(val)
+
+    curr = root
+    while curr is not None:
         # Compare the value with the root value
         if curr.val == val:  # Increment the counter
             curr.count += 1
             return curr
         elif val < curr.val:  # Go left
             if curr.left is not None:
-                q.put(curr.left)
+                curr = curr.left
             else:
                 curr.left = BinarySearchTreeNode(val)
                 return curr.left
         else:  # Go right
             if curr.right:
-                q.put(curr.right)
+                curr = curr.right
             else:
                 curr.right = BinarySearchTreeNode(val)
                 return curr.right
+
+
+# def delete(root: BinarySearchTreeNode, val: int):
+#     """Standard BST Deletion"""
+#     # Base case
+#     if root is None:
+#         return root
+
+
+# Left Value < Root Value < Right Vale
 
 
 def avl_insert(root: BinarySearchTreeNode, val: int):
