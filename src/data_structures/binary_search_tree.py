@@ -274,17 +274,3 @@ def delete_recursive(root: Optional[BinarySearchTreeNode], val: int):
 #     AVL tree is a self-balancing Binary Search Tree (BST) where the difference between
 #     heights of left and right subtrees cannot be more than one for all nodes.
 #     """
-
-
-root = BinarySearchTreeNode(8)
-root.left = BinarySearchTreeNode(3)
-root.left.left = BinarySearchTreeNode(1)
-root.left.right = BinarySearchTreeNode(6)
-root.left.right.left = BinarySearchTreeNode(4)
-root.left.right.right = BinarySearchTreeNode(7)
-
-root.right = BinarySearchTreeNode(10)
-root.right.right = BinarySearchTreeNode(14)
-root.right.right.left = BinarySearchTreeNode(13)
-
-inorder_iterative(root)
