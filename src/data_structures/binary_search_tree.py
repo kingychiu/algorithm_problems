@@ -82,18 +82,28 @@ def inorder_iterative(node: BinarySearchTreeNode):
     # Call stack for back tracking,
     # We need a stack here, because there is more than 1 "previous"
     stack: LifoQueue = LifoQueue()
-    curr: Optional[BinarySearchTreeNode] = node
-    while not stack.empty() or curr:
-        if curr:
-            # Keep going Left
-            stack.put(curr)
-            curr = curr.left
-        else:
-            # Back Track to Node
+
+    # Dive to the left most
+    def _dive(leftmost: Optional[BinarySearchTreeNode]):
+        while leftmost is not None:
+            stack.put(leftmost)
+            leftmost = leftmost.left
+
+    _dive(node)
+
+    while not stack.empty():
+        # left most child
+        curr = stack.get()
+        results.append((curr.val, curr.count))
+
+        # parent of the left most child
+        if not stack.empty():
             curr = stack.get()
-            results.append((curr.val, curr.count))  # type: ignore
-            # Visit Right
-            curr = curr.right  # type: ignore
+            results.append((curr.val, curr.count))
+
+        # Left most child of the right subtree
+        _dive(curr.right)
+
     return results
 
 
@@ -105,21 +115,29 @@ def preorder_iterative(node: BinarySearchTreeNode):
     """
     results = []
 
-    # Call stack for back tracking
+    # Call stack for back tracking,
     # We need a stack here, because there is more than 1 "previous"
     stack: LifoQueue = LifoQueue()
-    curr: Optional[BinarySearchTreeNode] = node
-    while not stack.empty() or curr:
-        if curr:
-            results.append((curr.val, curr.count))  # type: ignore
-            # Keep going Left
-            stack.put(curr)
-            curr = curr.left
-        else:
-            # Back Track to Node
+    # Dive to the left most
+    def _dive(leftmost: Optional[BinarySearchTreeNode]):
+        while leftmost is not None:
+            results.append((leftmost.val, leftmost.count))
+            stack.put(leftmost)
+            leftmost = leftmost.left
+
+    _dive(node)
+
+    while not stack.empty():
+        # left most child
+        curr = stack.get()
+
+        # parent of the left most child
+        if not stack.empty():
             curr = stack.get()
-            # Visit Right
-            curr = curr.right  # type: ignore
+
+        # Left most child of the right subtree
+        _dive(curr.right)
+
     return results
 
 
@@ -256,3 +274,17 @@ def delete_recursive(root: Optional[BinarySearchTreeNode], val: int):
 #     AVL tree is a self-balancing Binary Search Tree (BST) where the difference between
 #     heights of left and right subtrees cannot be more than one for all nodes.
 #     """
+
+
+root = BinarySearchTreeNode(8)
+root.left = BinarySearchTreeNode(3)
+root.left.left = BinarySearchTreeNode(1)
+root.left.right = BinarySearchTreeNode(6)
+root.left.right.left = BinarySearchTreeNode(4)
+root.left.right.right = BinarySearchTreeNode(7)
+
+root.right = BinarySearchTreeNode(10)
+root.right.right = BinarySearchTreeNode(14)
+root.right.right.left = BinarySearchTreeNode(13)
+
+inorder_iterative(root)
