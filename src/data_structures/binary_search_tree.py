@@ -202,7 +202,9 @@ def insert_recursive(root: Optional[BinarySearchTreeNode], val: int):
     return root
 
 
-def insert_iterative(root: Optional[BinarySearchTreeNode], val: int):
+def insert_iterative(
+    root: Optional[BinarySearchTreeNode], val: int
+) -> BinarySearchTreeNode:
     """Standard BST Insertion"""
     # Left Value < Root Value < Right Vale
     if root is None:
@@ -213,20 +215,21 @@ def insert_iterative(root: Optional[BinarySearchTreeNode], val: int):
         # Compare the value with the root value
         if curr.val == val:  # Increment the counter
             curr.count += 1
-            return curr
+            break
 
         if val < curr.val:  # Go left
             if curr.left is not None:
                 curr = curr.left
             else:
                 curr.left = BinarySearchTreeNode(val)
-                return curr.left
+                break
         else:  # Go right
             if curr.right:
                 curr = curr.right
             else:
                 curr.right = BinarySearchTreeNode(val)
-                return curr.right
+                break
+    return root
 
 
 def delete_recursive(root: Optional[BinarySearchTreeNode], val: int):
@@ -256,12 +259,10 @@ def delete_recursive(root: Optional[BinarySearchTreeNode], val: int):
     # if we want to delete 3, we need shifting 4, and 5
     # Locate the smallest right node
     right_smallest_node = smallest(root.right)
-    # If we found the smallest right node
-    delete_recursive(root.right, right_smallest_node.val)
+    # Replace the node with the smallest node
+    # The new right subtree should not contain the smallest value
+    right_smallest_node.right = delete_recursive(root.right, right_smallest_node.val)
     # Replace with the smallest node
-    right_smallest_node.right = (
-        root.right if root.right.val != right_smallest_node.val else None
-    )
     right_smallest_node.left = root.left
     return right_smallest_node
 
