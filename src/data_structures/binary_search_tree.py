@@ -136,7 +136,7 @@ def levelorder(node: BinarySearchTreeNode):
     return results
 
 
-def insert_recursive(root: BinarySearchTreeNode, val: int):
+def insert_recursive(root: Optional[BinarySearchTreeNode], val: int):
     """Standard BST Insertion"""
     # Left Value < Root Value < Right Vale
     if root is None:
@@ -151,7 +151,7 @@ def insert_recursive(root: BinarySearchTreeNode, val: int):
     return root
 
 
-def insert_iterative(root: BinarySearchTreeNode, val: int):
+def insert_iterative(root: Optional[BinarySearchTreeNode], val: int):
     """Standard BST Insertion"""
     # Left Value < Root Value < Right Vale
     if root is None:
@@ -163,7 +163,8 @@ def insert_iterative(root: BinarySearchTreeNode, val: int):
         if curr.val == val:  # Increment the counter
             curr.count += 1
             return curr
-        elif val < curr.val:  # Go left
+
+        if val < curr.val:  # Go left
             if curr.left is not None:
                 curr = curr.left
             else:
@@ -187,16 +188,16 @@ def insert_iterative(root: BinarySearchTreeNode, val: int):
 # Left Value < Root Value < Right Vale
 
 
-def avl_insert(root: BinarySearchTreeNode, val: int):
-    """
-    AVL tree is a self-balancing Binary Search Tree (BST) where the difference between
-    heights of left and right subtrees cannot be more than one for all nodes.
-    """
-    # node_w = insert(root, val)
+# def avl_insert(root: BinarySearchTreeNode, val: int):
+#     """
+#     AVL tree is a self-balancing Binary Search Tree (BST) where the difference between
+#     heights of left and right subtrees cannot be more than one for all nodes.
+#     """
+#     # node_w = insert(root, val)
 
 
-def avl_delete():
-    """
-    AVL tree is a self-balancing Binary Search Tree (BST) where the difference between
-    heights of left and right subtrees cannot be more than one for all nodes.
-    """
+# def avl_delete():
+#     """
+#     AVL tree is a self-balancing Binary Search Tree (BST) where the difference between
+#     heights of left and right subtrees cannot be more than one for all nodes.
+#     """
