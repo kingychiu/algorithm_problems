@@ -54,7 +54,7 @@ def preorder_recursive(node: Optional[BinarySearchTreeNode]):
     return results
 
 
-def postorder_recursive(node: BinarySearchTreeNode):
+def postorder_recursive(node: Optional[BinarySearchTreeNode]):
     """
     (Left, Right, Root)
     """
@@ -229,17 +229,17 @@ def delete_recursive(root: Optional[BinarySearchTreeNode], val: int):
     if root.right is None:
         # If the right sub tree is empty, replace with the left sub tree
         return root.left
-    else:
-        # Locate the smallest right node
-        right_smallest_node = smallest_recursive(root.right)
-        # If we found the smallest right node
-        delete_recursive(root.right, right_smallest_node.val)
-        # Replace with the smallest node
-        right_smallest_node.right = (
-            root.right if root.right.val != right_smallest_node.val else None
-        )
-        right_smallest_node.left = root.left
-        return right_smallest_node
+
+    # Locate the smallest right node
+    right_smallest_node = smallest_recursive(root.right)
+    # If we found the smallest right node
+    delete_recursive(root.right, right_smallest_node.val)
+    # Replace with the smallest node
+    right_smallest_node.right = (
+        root.right if root.right.val != right_smallest_node.val else None
+    )
+    right_smallest_node.left = root.left
+    return right_smallest_node
 
 
 # def avl_insert(root: BinarySearchTreeNode, val: int):
