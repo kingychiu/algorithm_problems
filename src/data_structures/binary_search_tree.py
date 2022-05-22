@@ -15,38 +15,42 @@ class BinarySearchTreeNode:  # pylint: disable=too-few-public-methods
         self.right: Optional[BinarySearchTreeNode] = None
 
 
-def inorder_recursive(node: BinarySearchTreeNode):
+def inorder_recursive(node: Optional[BinarySearchTreeNode]):
     """
     (Left, Node, Right)
     It is helpful when we want to print out the BST values in order
     """
+    # Base case
+    if node is None:
+        return []
+
     results = []
     # Left
-    if node.left:
-        results += inorder_recursive(node.left)
+    results += inorder_recursive(node.left)
     # Node
     results.append((node.val, node.count))
     # Right
-    if node.right:
-        results += inorder_recursive(node.right)
+    results += inorder_recursive(node.right)
     return results
 
 
-def preorder_recursive(node: BinarySearchTreeNode):
+def preorder_recursive(node: Optional[BinarySearchTreeNode]):
     """
     (Root, Left, Right)
     It is helpful when we want to clone a BST,
     Create a new BST B by inserting the results from preorder traversing BST A
     """
+    # Base case
+    if node is None:
+        return []
+
     results = []
     # Node
     results.append((node.val, node.count))
     # Left
-    if node.left:
-        results += preorder_recursive(node.left)
+    results += preorder_recursive(node.left)
     # Right
-    if node.right:
-        results += preorder_recursive(node.right)
+    results += preorder_recursive(node.right)
     return results
 
 
@@ -54,13 +58,15 @@ def postorder_recursive(node: BinarySearchTreeNode):
     """
     (Left, Right, Root)
     """
+    # Base case
+    if node is None:
+        return []
+
     results = []
     # Left
-    if node.left:
-        results += postorder_recursive(node.left)
+    results += postorder_recursive(node.left)
     # Right
-    if node.right:
-        results += postorder_recursive(node.right)
+    results += postorder_recursive(node.right)
     # Node
     results.append((node.val, node.count))
     return results
@@ -73,7 +79,8 @@ def inorder_iterative(node: BinarySearchTreeNode):
     """
     results = []
 
-    # Call stack for back tracking
+    # Call stack for back tracking,
+    # We need a stack here, because there is more than 1 "previous"
     stack: LifoQueue = LifoQueue()
     curr: Optional[BinarySearchTreeNode] = node
     while not stack.empty() or curr:
@@ -99,6 +106,7 @@ def preorder_iterative(node: BinarySearchTreeNode):
     results = []
 
     # Call stack for back tracking
+    # We need a stack here, because there is more than 1 "previous"
     stack: LifoQueue = LifoQueue()
     curr: Optional[BinarySearchTreeNode] = node
     while not stack.empty() or curr:
@@ -134,6 +142,26 @@ def levelorder(node: BinarySearchTreeNode):
             results.append((curr_node.right.val, curr_node.right.count))
             q.put(curr_node.right)
     return results
+
+
+def smallest_recursive(node: BinarySearchTreeNode):
+    """
+    Get the smallest (left-most) value
+    """
+    # Base case
+    if node.left is None:
+        return node
+    return smallest_recursive(node.left)
+
+
+def largest_recursive(node: BinarySearchTreeNode):
+    """
+    Get the largest (right-most) value
+    """
+    # Base case
+    if node.right is None:
+        return node
+    return largest_recursive(node.right)
 
 
 def insert_recursive(root: Optional[BinarySearchTreeNode], val: int):
@@ -178,14 +206,40 @@ def insert_iterative(root: Optional[BinarySearchTreeNode], val: int):
                 return curr.right
 
 
-# def delete(root: BinarySearchTreeNode, val: int):
-#     """Standard BST Deletion"""
-#     # Base case
-#     if root is None:
-#         return root
+def delete_recursive(root: Optional[BinarySearchTreeNode], val: int):
+    """Standard BST Deletion"""
 
+    # Base case
+    if root is None:  # Value not found
+        raise ValueError
 
-# Left Value < Root Value < Right Vale
+    # Left Value < Root Value < Right Vale
+    if val < root.val:
+        root.left = delete_recursive(root.left, val)
+        return root
+    if val > root.val:
+        root.right = delete_recursive(root.right, val)
+        return root
+    # Reduce Count
+    if root.count > 1:
+        root.count -= 1
+        return root
+
+    # We want to keep root < right, so we need the smallest value in the right subtree
+    if root.right is None:
+        # If the right sub tree is empty, replace with the left sub tree
+        return root.left
+    else:
+        # Locate the smallest right node
+        right_smallest_node = smallest_recursive(root.right)
+        # If we found the smallest right node
+        delete_recursive(root.right, right_smallest_node.val)
+        # Replace with the smallest node
+        right_smallest_node.right = (
+            root.right if root.right.val != right_smallest_node.val else None
+        )
+        right_smallest_node.left = root.left
+        return right_smallest_node
 
 
 # def avl_insert(root: BinarySearchTreeNode, val: int):
