@@ -1,6 +1,6 @@
 """Binary Search Tree"""
 from typing import Optional
-from queue import Queue, LifoQueue
+from collections import deque
 
 
 class BinarySearchTreeNode:  # pylint: disable=too-few-public-methods
@@ -81,19 +81,18 @@ def inorder_iterative(node: BinarySearchTreeNode):
 
     # Call stack for back tracking,
     # We need a stack here, because there is more than 1 "previous"
-    stack: LifoQueue = LifoQueue()
+    stack: deque = deque()
 
     # Dive to the left most
     def _dive(leftmost: Optional[BinarySearchTreeNode]):
         while leftmost is not None:
-            stack.put(leftmost)
+            stack.append(leftmost)
             leftmost = leftmost.left
 
     _dive(node)
 
-    while not stack.empty():
-        # left most child
-        curr = stack.get()
+    while stack:
+        curr = stack.pop()
         results.append((curr.val, curr.count))
         # Left most child of the right subtree
         _dive(curr.right)
@@ -111,19 +110,18 @@ def preorder_iterative(node: BinarySearchTreeNode):
 
     # Call stack for back tracking,
     # We need a stack here, because there is more than 1 "previous"
-    stack: LifoQueue = LifoQueue()
+    stack: deque = deque()
     # Dive to the left most
     def _dive(leftmost: Optional[BinarySearchTreeNode]):
         while leftmost is not None:
             results.append((leftmost.val, leftmost.count))
-            stack.put(leftmost)
+            stack.append(leftmost)
             leftmost = leftmost.left
 
     _dive(node)
 
-    while not stack.empty():
-        # left most child
-        curr = stack.get()
+    while stack:
+        curr = stack.pop()
         # Left most child of the right subtree
         _dive(curr.right)
 
@@ -134,20 +132,20 @@ def levelorder(node: BinarySearchTreeNode):
     """
     BFS
     """
-    q: Queue = Queue()
+    q: deque = deque()
     # Root level
-    q.put(node)
+    q.append(node)
     results = [(node.val, node.count)]
 
-    while not q.empty():
-        curr_node = q.get()
+    while q:
+        curr_node = q.popleft()
         if curr_node.left:
             results.append((curr_node.left.val, curr_node.left.count))
-            q.put(curr_node.left)
+            q.append(curr_node.left)
 
         if curr_node.right:
             results.append((curr_node.right.val, curr_node.right.count))
-            q.put(curr_node.right)
+            q.append(curr_node.right)
     return results
 
 

@@ -1,5 +1,5 @@
 """Array representation of a binary tree"""
-from queue import Queue
+from collections import deque
 
 
 class ArrayBinaryTree:
@@ -89,15 +89,15 @@ class ArrayBinaryTree:
             list[list[int]]: 2D arrays to represent the tree level by level
         """
         # Level-wise
-        q = Queue(maxsize=len(self.tree))
-        q.put((self._get_root_idx(), 0))
+        q = deque()
+        q.append((self._get_root_idx(), 0))
 
         printing_level = 0
         levels = []
         level_values = []
 
-        while not q.empty():
-            curr_idx, curr_level = q.get()
+        while q:
+            curr_idx, curr_level = q.popleft()
             if curr_level == printing_level:
                 level_values.append(str(self.tree[curr_idx]))
             else:
@@ -110,9 +110,9 @@ class ArrayBinaryTree:
             right_idx = self._get_right_child_idx(curr_idx)
 
             if left_idx < len(self.tree):
-                q.put((left_idx, curr_level + 1))
+                q.append((left_idx, curr_level + 1))
             if right_idx < len(self.tree):
-                q.put((right_idx, curr_level + 1))
+                q.append((right_idx, curr_level + 1))
 
         print(f"Level-{printing_level}: {level_values}")
         levels.append(level_values)
