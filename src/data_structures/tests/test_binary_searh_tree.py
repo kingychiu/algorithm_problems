@@ -154,7 +154,7 @@ def test_tree_insert_iterative():
     assert [result[0] for result in results] == [0]
 
 
-def test_minmax_recursive():
+def test_minmax():
     """
     Test Binary Search Tree
                8
@@ -179,8 +179,39 @@ def test_minmax_recursive():
     root.right = binary_search_tree.BinarySearchTreeNode(10)
     root.right.right = binary_search_tree.BinarySearchTreeNode(14)
     root.right.right.left = binary_search_tree.BinarySearchTreeNode(13)
-    assert binary_search_tree.smallest_recursive(root).val == 1
-    assert binary_search_tree.largest_recursive(root).val == 14
+    assert binary_search_tree.smallest(root).val == 1
+    assert binary_search_tree.largest(root).val == 14
+
+
+def test_search():
+    """
+    Test Binary Search Tree
+               8
+             /   \
+            /     \
+           3       10
+          / \       \
+         /   \       \
+        1     6       14
+             / \     /
+            /   \   /
+           4     7 13
+    """
+
+    root = binary_search_tree.BinarySearchTreeNode(8)
+    root.left = binary_search_tree.BinarySearchTreeNode(3)
+    root.left.left = binary_search_tree.BinarySearchTreeNode(1)
+    root.left.right = binary_search_tree.BinarySearchTreeNode(6)
+    root.left.right.left = binary_search_tree.BinarySearchTreeNode(4)
+    root.left.right.right = binary_search_tree.BinarySearchTreeNode(7)
+
+    root.right = binary_search_tree.BinarySearchTreeNode(10)
+    root.right.right = binary_search_tree.BinarySearchTreeNode(14)
+    root.right.right.left = binary_search_tree.BinarySearchTreeNode(13)
+    assert binary_search_tree.search(root, 8) is root
+    assert binary_search_tree.search(root, 3) is root.left
+    assert binary_search_tree.search(root, 4) is root.left.right.left
+    assert binary_search_tree.search(root, 100) is None
 
 
 def test_delete_recursive():

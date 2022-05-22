@@ -149,24 +149,42 @@ def levelorder(node: BinarySearchTreeNode):
     return results
 
 
-def smallest_recursive(node: BinarySearchTreeNode):
+def smallest(node: BinarySearchTreeNode) -> BinarySearchTreeNode:
     """
     Get the smallest (left-most) value
     """
-    # Base case
-    if node.left is None:
-        return node
-    return smallest_recursive(node.left)
+    curr = node
+    while curr.left:
+        curr = curr.left
+    return curr
 
 
-def largest_recursive(node: BinarySearchTreeNode):
+def largest(node: BinarySearchTreeNode) -> BinarySearchTreeNode:
     """
     Get the largest (right-most) value
     """
-    # Base case
-    if node.right is None:
-        return node
-    return largest_recursive(node.right)
+    curr = node
+    while curr.right:
+        curr = curr.right
+    return curr
+
+
+def search(
+    node: Optional[BinarySearchTreeNode], val: int
+) -> Optional[BinarySearchTreeNode]:
+    """
+    Get the node containing the target val
+    """
+    curr = node
+    while curr:
+        if val == curr.val:
+            return curr
+        if val < curr.val:
+            curr = curr.left
+        else:
+            curr = curr.right
+
+    return None
 
 
 def insert_recursive(root: Optional[BinarySearchTreeNode], val: int):
@@ -237,7 +255,7 @@ def delete_recursive(root: Optional[BinarySearchTreeNode], val: int):
     # Imagine we have [1, 2, 3, 4, 5]
     # if we want to delete 3, we need shifting 4, and 5
     # Locate the smallest right node
-    right_smallest_node = smallest_recursive(root.right)
+    right_smallest_node = smallest(root.right)
     # If we found the smallest right node
     delete_recursive(root.right, right_smallest_node.val)
     # Replace with the smallest node
