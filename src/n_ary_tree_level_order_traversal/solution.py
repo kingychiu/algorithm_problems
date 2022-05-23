@@ -1,7 +1,8 @@
 """
     https://leetcode.com/problems/n-ary-tree-level-order-traversal/
 """
-from typing import Optional, List, Tuple, Any
+from typing import Optional
+from collections import deque
 
 from src.data_structures.leetcode.tree import Node
 
@@ -12,7 +13,7 @@ class Solution:
     Solution
     """
 
-    def level_order(self, root: Optional[Node] = None) -> List[List[Any]]:
+    def level_order(self, root: Optional[Node] = None) -> list[list[int]]:
         # pylint: disable=no-self-use
         """
         Given an n-ary tree, return the level order traversal of its nodes' values.
@@ -21,21 +22,21 @@ class Solution:
             return []
 
         # BFS with a queue of (Node, level)
-        queue: List[Tuple[Node, int]] = []
-        queue.append((root, 1))
+        queue: deque[Node] = deque([root])
 
-        results: List[List[Any]] = []
-        current_result_len = 0
+        results: list[list[int]] = []
 
         while queue:
-            current_node, current_level = queue.pop(0)
-            if current_level > current_result_len:
-                results.append([])
-                current_result_len += 1
+            level_results = []
+            queue_next: deque[Node] = deque()
+            while queue:
+                node = queue.popleft()
+                level_results.append(node.val)
 
-            results[current_level - 1].append(current_node.val)
-            if current_node.children:
-                for child in current_node.children:
-                    queue.append((child, current_level + 1))
+                for next_node in node.children or []:
+                    queue_next.append(next_node)
+
+            results.append(level_results)
+            queue = queue_next
 
         return results
