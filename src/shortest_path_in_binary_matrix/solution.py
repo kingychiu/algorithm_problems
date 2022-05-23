@@ -1,7 +1,9 @@
 """
     https://leetcode.com/problems/shortest-path-in-binary-matrix/
 """
-from typing import List, Tuple, Set
+
+
+from collections import deque
 
 
 class Solution:
@@ -10,22 +12,26 @@ class Solution:
     Solution
     """
 
-    def get_submission(self, grid: List[List[int]]) -> int:
+    def get_submission(self, grid: list[list[int]]) -> int:
         # pylint: disable=no-self-use
         """
         Return the length of the shortest such clear path from top-left to bottom-right.
         If such a path does not exist, return -1.
         """
         # BFS setup
-        queue: List[Tuple[int, int, int]] = [(0, 0, 1)]
-        visited: Set[Tuple[int, int]] = set()
-        target_y = len(grid) - 1
-        if target_y == -1:
+        queue: deque[tuple[int, ...]] = deque([(0, 0)])
+        visited: set[tuple[int, ...]] = set()
+        target_row = len(grid) - 1
+
+        # Empty grid
+        if target_row == -1:
             return 0
+        # Invalid starting point
         if grid[0][0] == 1:
             return -1
-        target_x = len(grid[0]) - 1
+        target_col = len(grid[0]) - 1
 
+        # Possible directions
         directions = [
             (1, 0),
             (-1, 0),
@@ -36,20 +42,25 @@ class Solution:
             (1, -1),
             (1, 1),
         ]
+        cost = 0
         while queue:
-            # BFS dequeue
-            x, y, cost = queue.pop(0)  # pylint: disable=invalid-name
-            if x == target_x and y == target_y:
-                return cost
-            for dir_x, dir_y in directions:
-                new_x = x + dir_x
-                new_y = y + dir_y
-                if (
-                    target_x >= new_x >= 0
-                    and target_y >= new_y >= 0
-                    and grid[new_y][new_x] == 0
-                    and (new_x, new_y) not in visited
-                ):
-                    visited.add((new_x, new_y))
-                    queue.append((new_x, new_y, cost + 1))
+            cost += 1
+            next_queue: deque[tuple[int, ...]] = deque()
+            while queue:
+                row, col = queue.popleft()
+                if row == target_row and col == target_col:
+                    return cost
+
+                for drow, dcol in directions:
+                    nrow = row + drow
+                    ncol = col + dcol
+                    if (
+                        target_col >= ncol >= 0
+                        and target_row >= nrow >= 0
+                        and grid[nrow][ncol] == 0
+                        and (nrow, ncol) not in visited
+                    ):
+                        visited.add((nrow, ncol))
+                        next_queue.append((nrow, ncol))
+            queue = next_queue
         return -1
