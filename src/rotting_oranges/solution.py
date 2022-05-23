@@ -1,7 +1,8 @@
 """
     https://leetcode.com/problems/rotting-oranges/
 """
-from typing import List, Tuple, Set
+
+from collections import deque
 
 
 class Solution:
@@ -10,7 +11,7 @@ class Solution:
     Solution
     """
 
-    def next_moves(self, row, col, grid_width, grid_height) -> List[Tuple[int, int]]:
+    def next_moves(self, row, col, grid_width, grid_height) -> list[tuple[int, int]]:
         # pylint: disable=no-self-use
         """Get next moves of the flooding"""
         next_nodes = []
@@ -29,7 +30,7 @@ class Solution:
             next_nodes.append((row, col + 1))
         return next_nodes
 
-    def oranges_rotting(self, grid: List[List[int]]):
+    def oranges_rotting(self, grid: list[list[int]]):
         # pylint: disable=no-self-use
         """
         In a given grid, each cell can have one of three values:
@@ -51,9 +52,9 @@ class Solution:
         grid_height = len(grid)
         grid_width = len(grid[0])
         # Use BFS to start level-wise exploration from all initial rotten orange
-        visited: Set[Tuple[int, int]] = set()
+        visited: set[tuple[int, int]] = set()
         # with a queue of tuples (row, col, minute_took)
-        queue: List[Tuple[int, int, int]] = []
+        queue: deque[tuple[int, int]] = deque()
         num_fresh_orange = 0
 
         for row in range(grid_height):
@@ -61,7 +62,7 @@ class Solution:
                 if (
                     grid[row][col] == 2
                 ):  # Add the initial rotten orange to the BFS queue
-                    queue.append((row, col, 0))
+                    queue.append((row, col))
                 if grid[row][col] == 1:  # initialize the fresh orange counter
                     num_fresh_orange += 1
 
@@ -69,27 +70,26 @@ class Solution:
         if num_fresh_orange == 0:
             return 0
 
-        total_minute_took = 0
+        total_minute_took = -1  # at time = 0, the queue items are already rotten.
         while queue:
-            # BFS dequeue
-            row, col, minute_took = queue.pop(0)
-            # update time
-            total_minute_took = minute_took
+            next_queue: deque[tuple[int, int]] = deque()
+            while queue:
+                row, col = queue.popleft()
+                # filter all possible next moves
+                next_nodes = self.next_moves(row, col, grid_width, grid_height)
+                for nrow, ncol in next_nodes:
+                    # check visited or not
+                    if (nrow, ncol) in visited:
+                        continue
+                    visited.add((nrow, ncol))
+                    # Only move to fresh orange
+                    if grid[nrow][ncol] == 1:
+                        num_fresh_orange -= 1
+                        next_queue.append((nrow, ncol))
 
-            # filter all possible next moves
-            next_nodes = self.next_moves(row, col, grid_width, grid_height)
+            total_minute_took += 1
+            queue = next_queue
 
-            for nrow, ncol in next_nodes:
-                # check visited or not
-                if (nrow, ncol) in visited:
-                    continue
-                visited.add((nrow, ncol))
-                # Only move to fresh orange
-                if grid[nrow][ncol] == 1:
-                    num_fresh_orange -= 1
-                    # BFS enqueue
-                    queue.append((nrow, ncol, minute_took + 1))
-
-        if num_fresh_orange == 0:
+        if num_fresh_orange == 0:  # If at the end all orange are rotten
             return total_minute_took
         return -1
