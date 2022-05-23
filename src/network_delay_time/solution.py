@@ -2,8 +2,7 @@
     https://leetcode.com/problems/network-delay-time/
 """
 from collections import defaultdict
-from queue import PriorityQueue
-from typing import List, Dict
+import heapq
 
 
 class Solution:
@@ -12,24 +11,24 @@ class Solution:
     Solution
     """
 
-    def get_submission(self, times: List[List[int]], N: int, K: int) -> int:
+    def get_submission(self, times: list[list[int]], N: int, K: int) -> int:
         # pylint: disable=no-self-use
         """
         Now, we send a signal from a certain node K.
         How long will it take for all nodes to receive the signal?
         If it is impossible, return -1.
         """
-        time_map: Dict[int, Dict[int, int]] = defaultdict(dict)
+        time_map: dict[int, dict[int, int]] = defaultdict(dict)
         for time in times:
             time_map[time[0]][time[1]] = time[2]
 
-        q: PriorityQueue = PriorityQueue()
-        q.put((0, K, 0))  # (priority, node_idx, accumulated_time)
+        q = [(0, K, 0)]
+        heapq.heapify(q)
         visited = set()
 
         time_spent = 0
-        while not q.empty():
-            _, node, acc_time = q.get()
+        while q:
+            _, node, acc_time = heapq.heappop(q)
             if node not in visited:
                 time_spent = max(time_spent, acc_time)
                 visited.add(node)
@@ -37,7 +36,9 @@ class Solution:
             for nxt_node in time_map[node].keys():
                 if nxt_node not in visited:
                     nxt_time = time_map[node][nxt_node]
-                    q.put((acc_time + nxt_time, nxt_node, acc_time + nxt_time))
+                    heapq.heappush(
+                        q, (acc_time + nxt_time, nxt_node, acc_time + nxt_time)
+                    )
 
         if len(visited) == N:
             return time_spent
