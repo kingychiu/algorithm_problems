@@ -1,7 +1,9 @@
 """
     https://leetcode.com/problems/open-the-lock/
 """
-from typing import List, Set
+
+
+from collections import deque
 
 
 class Solution:
@@ -23,22 +25,22 @@ class Solution:
 
         return digit + 1 if moving_up else digit - 1
 
-    def next_moves(self, d1, d2, d3, d4, cost) -> List[List[int]]:
+    def next_moves(self, d1: int, d2: int, d3: int, d4: int) -> list[tuple[int, ...]]:
         # pylint: disable=no-self-use invalid-name too-many-arguments
         """
         It takes next moves from the current state.
         """
-        next_moves = []
+        next_moves: list[tuple[int, ...]] = []
         for idx, d in enumerate([d1, d2, d3, d4]):  # pylint: disable=invalid-name
-            next_move = [d1, d2, d3, d4, cost + 1]
+            next_move = [d1, d2, d3, d4]
             next_move[idx] = self.next_digit(d, moving_up=True)
-            next_moves.append(next_move)
-            next_move = [d1, d2, d3, d4, cost + 1]
+            next_moves.append(tuple(next_move))
+            next_move = [d1, d2, d3, d4]
             next_move[idx] = self.next_digit(d, moving_up=False)
-            next_moves.append(next_move)
+            next_moves.append(tuple(next_move))
         return next_moves
 
-    def open_lock(self, deadends: List[str], target: str) -> int:
+    def open_lock(self, deadends: list[str], target: str) -> int:
         # pylint: disable=no-self-use
         """
         Given a target representing the value of the wheels that will unlock the lock,
@@ -49,29 +51,34 @@ class Solution:
         unique_deadends = set(deadends)
 
         # BFS queue (d1, d2, d3, d4, cost)
-        queue: List[List[int]] = [[0, 0, 0, 0, 0]]
-        visited: Set[str] = set()
+        queue: deque[tuple[int, ...]] = deque([(0, 0, 0, 0)])
+        visited: set[str] = set()
 
+        cost = 0
         while queue:
-            # BFS dequeue
-            d1, d2, d3, d4, cost = queue.pop(0)  # pylint: disable=invalid-name
+            next_queue: deque[tuple[int, ...]] = deque()
+            while queue:
+                d1, d2, d3, d4 = queue.popleft()  # pylint: disable=invalid-name
+                d_str = f"{d1}{d2}{d3}{d4}"
 
-            # Construct a state key
-            d_str = f"{d1}{d2}{d3}{d4}"
-            if d_str in unique_deadends:
-                continue
-
-            # if target found
-            if d_str == target:
-                return cost
-
-            # generate next possible moves
-            next_moves = self.next_moves(d1, d2, d3, d4, cost)
-
-            for move in next_moves:
-                d_str = f"{move[0]}{move[1]}{move[2]}{move[3]}"
-                if d_str in visited:
+                # Deadends
+                if d_str in unique_deadends:
                     continue
-                visited.add(d_str)
-                queue.append(move)
+
+                if d_str == target:
+                    return cost
+
+                # generate next possible moves
+                next_moves = self.next_moves(d1, d2, d3, d4)
+
+                for move in next_moves:
+                    d_str = f"{move[0]}{move[1]}{move[2]}{move[3]}"
+                    if d_str in visited:
+                        continue
+                    visited.add(d_str)
+                    next_queue.append(move)
+
+            queue = next_queue
+            cost += 1
+
         return -1
