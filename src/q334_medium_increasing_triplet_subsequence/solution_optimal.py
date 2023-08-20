@@ -27,14 +27,14 @@ class Solution:
             3: matches 2nd
             2: matches 2nd (replace 3)
             4" matches 3rd
-            
+
             At the end the first, second, third values here MIGHT NOT BE the triplet we are looking for.
-            For example with 20,100,10,12,5,13. the final values are 5,12,13.
-            But because of the 2nd value is 12, we can ensure every first second smallest values are also smaller than 12.
-            
-            Generally speaking,
-            - Every historical first_smallest must smaller than the latest second_smallest
-            - Every historical second_smallest must smaller than the latest third (returned already).
+            For example with 20, 100, 10, 12, 5, 13. 
+            The final values are 5, 12, 13,
+            while the correct triplet should be 10, 12, 13.
+            Generally speaking, it is not an issue.
+            - If the first_smallest got replaced: every historical first_smallest must smaller than the latest second_smallest
+            - If the first and second smallest got replaced: then we are looking at a entirely new triplet
             """
             if num <= first_smallest:
                 first_smallest = num

@@ -3,6 +3,7 @@
 import pytest
 
 from .solution import Solution
+from .solution_optimal import Solution as OptimalSolution
 
 
 @pytest.mark.parametrize(
@@ -27,3 +28,4 @@ def test_solution(nums, expected):
     Checking Test Cases
     """
     assert Solution().increasingTriplet(nums) == expected
+    assert OptimalSolution().increasingTriplet(nums) == expected
