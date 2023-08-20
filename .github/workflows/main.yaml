@@ -30,5 +30,4 @@ jobs:
         run: |
           make lint
       - name: Test with pytest
-        run: |
-          	poetry run pytest -s --cov=src --no-cov-on-fail --cov-fail-under=100 --cov-report=term-missing:skip-covered ./src
+        run: poetry run pytest -s --cov=src --no-cov-on-fail --cov-fail-under=100 --cov-report=term-missing:skip-covered ./src
