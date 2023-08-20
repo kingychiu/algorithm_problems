@@ -6,18 +6,18 @@ lint:
 	poetry run mypy ./src
 
 test:
-	poetry run pytest --cov=src \
+	poetry run pytest -s --cov=src \
 	--no-cov-on-fail --cov-fail-under=100 --cov-report=term-missing:skip-covered \
-	-n auto $(PATH)
+	$(PATH)
 
 test_all:
-	make test PATH=.
+	make test PATH=src
 
 timed_test:
-	poetry run pytest -vv --durations=0 $(PATH)
+	poetry run pytest -s -vv --durations=0 $(PATH)
 
 timed_test_all:
-	make timed_test PATH=.
+	make timed_test PATH=src
 
 new_problem:
 	rm -rf ./src/${PROBLEM_NAME}
