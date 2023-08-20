@@ -29,10 +29,10 @@ class Solution:
             4" matches 3rd
 
             At the end the first, second, third values here MIGHT NOT BE the triplet we are looking for.
-            For example with 20, 100, 10, 12, 5, 13. 
+            For example with 20, 100, 10, 12, 5, 13.
             The final values are 5, 12, 13,
             while the correct triplet should be 10, 12, 13.
-            
+
             Generally speaking, it is not an issue.
             - If the "first" got replaced, the current "second" are still larger than all historical "first" values:
             current second (12) > current first (5) > all historical first values (... 10)
