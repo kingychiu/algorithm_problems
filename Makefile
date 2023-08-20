@@ -7,8 +7,7 @@ lint:
 
 test:
 	poetry run pytest -s --cov=src \
-	--no-cov-on-fail --cov-fail-under=100 --cov-report=term-missing:skip-covered \
-	$(PATH)
+	--no-cov-on-fail --cov-fail-under=100 --cov-report=term-missing:skip-covered $(PATH)
 
 test_all:
 	make test PATH=src

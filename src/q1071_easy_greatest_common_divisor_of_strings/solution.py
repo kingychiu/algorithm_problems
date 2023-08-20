@@ -4,10 +4,6 @@
 # [1071] Greatest Common Divisor of Strings
 #
 
-"""
-"""
-
-
 # @lc code=start
 class Solution:
     def check_divisible(self, s: str, d: str):
