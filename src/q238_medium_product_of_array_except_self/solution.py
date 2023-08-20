@@ -9,15 +9,15 @@
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
         results = []
-        accum = 1
+        prefix_prod = 1
         for i in range(len(nums)):
-            results.append(accum)
-            accum *= nums[i]
+            results.append(prefix_prod)
+            prefix_prod *= nums[i]
 
-        accum = 1
+        postfix_prod = 1
         for i in range(len(nums) - 1, -1, -1):
-            results[i] *= accum
-            accum *= nums[i]
+            results[i] *= postfix_prod
+            postfix_prod *= nums[i]
         return results
 
 
