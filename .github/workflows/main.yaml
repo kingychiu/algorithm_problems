@@ -18,7 +18,7 @@ jobs:
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
-          version: 1.4.2
+          version: ${{ matrix.poetry-version }}
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
@@ -26,12 +26,9 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Install library
         run: poetry install --no-interaction
-      - name: Lint with ruff
+      - name: Lint & Type Check
         run: |
           make lint
-      - name: Type Check with mypy
-        run: |
-          make type-check
       - name: Test with pytest
         run: |
           make test
