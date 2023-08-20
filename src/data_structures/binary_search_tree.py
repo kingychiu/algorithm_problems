@@ -1,6 +1,6 @@
 """Binary Search Tree"""
-from typing import Optional
 from collections import deque
+from typing import Optional
 
 
 class BinarySearchTreeNode:  # pylint: disable=too-few-public-methods
@@ -111,6 +111,7 @@ def preorder_iterative(node: BinarySearchTreeNode):
     # Call stack for back tracking,
     # We need a stack here, because there is more than 1 "previous"
     stack: deque = deque()
+
     # Dive to the left most
     def _dive(leftmost: Optional[BinarySearchTreeNode]):
         while leftmost is not None:
@@ -179,10 +180,7 @@ def search(
     while curr:
         if val == curr.val:
             return curr
-        if val < curr.val:
-            curr = curr.left
-        else:
-            curr = curr.right
+        curr = curr.left if val < curr.val else curr.right
 
     return None
 

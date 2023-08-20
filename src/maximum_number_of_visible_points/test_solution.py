@@ -1,6 +1,7 @@
 """ Testing solution """
 
 import pytest
+
 from src.maximum_number_of_visible_points.solution import Solution
 
 

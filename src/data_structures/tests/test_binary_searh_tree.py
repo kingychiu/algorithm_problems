@@ -2,6 +2,7 @@
     Tests for a binary search tree
 """
 import pytest
+
 from src.data_structures import binary_search_tree
 
 

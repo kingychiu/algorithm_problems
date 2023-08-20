@@ -2,6 +2,7 @@
     Tests for array representation of a binary tree
 """
 import pytest
+
 from src.data_structures.array_binary_tree import ArrayBinaryTree
 
 

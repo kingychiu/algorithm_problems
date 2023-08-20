@@ -1,8 +1,8 @@
 """
     https://leetcode.com/problems/network-delay-time/
 """
-from collections import defaultdict
 import heapq
+from collections import defaultdict
 
 
 class Solution:
@@ -33,7 +33,7 @@ class Solution:
                 time_spent = max(time_spent, acc_time)
                 visited.add(node)
 
-            for nxt_node in time_map[node].keys():
+            for nxt_node in time_map[node]:
                 if nxt_node not in visited:
                     nxt_time = time_map[node][nxt_node]
                     heapq.heappush(

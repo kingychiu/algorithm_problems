@@ -1,6 +1,7 @@
 """ Testing solution """
 
 import pytest
+
 from src.data_structures.leetcode.tree import parse_list_to_n_ary_tree
 from src.maximum_depth_of_n_ary_tree.solution import Solution
 

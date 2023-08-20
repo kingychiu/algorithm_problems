@@ -4,8 +4,8 @@
 
 from src.data_structures.leetcode.tree import (
     Node,
-    parse_list_to_n_ary_tree,
     parse_list_to_binary_tree,
+    parse_list_to_n_ary_tree,
 )
 
 

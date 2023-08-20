@@ -1,8 +1,9 @@
 """ Testing solution """
 
 import pytest
-from src.data_structures.leetcode.tree import parse_list_to_binary_tree
+
 from src.binary_tree_level_order_traversal_ii.solution import Solution
+from src.data_structures.leetcode.tree import parse_list_to_binary_tree
 
 
 @pytest.mark.parametrize(

@@ -1,8 +1,8 @@
 """
     https://leetcode.com/problems/n-ary-tree-level-order-traversal/
 """
-from typing import Optional
 from collections import deque
+from typing import Optional
 
 from src.data_structures.leetcode.tree import Node
 

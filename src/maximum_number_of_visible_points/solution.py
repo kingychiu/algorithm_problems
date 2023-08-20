@@ -1,9 +1,8 @@
 """
     https://leetcode.com/problems/maximum-number-of-visible-points/
 """
-from typing import List
-
 import math
+from typing import List
 
 
 class Solution:

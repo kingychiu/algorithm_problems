@@ -1,8 +1,9 @@
 """
     https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
 """
-from typing import Optional
 from collections import deque
+from typing import Optional
+
 from src.data_structures.leetcode.tree import TreeNode
 
 
