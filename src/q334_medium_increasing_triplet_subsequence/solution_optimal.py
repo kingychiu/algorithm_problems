@@ -32,9 +32,16 @@ class Solution:
             For example with 20, 100, 10, 12, 5, 13. 
             The final values are 5, 12, 13,
             while the correct triplet should be 10, 12, 13.
+            
             Generally speaking, it is not an issue.
-            - If the first_smallest got replaced: every historical first_smallest must smaller than the latest second_smallest
-            - If the first and second smallest got replaced: then we are looking at a entirely new triplet
+            - If the "first" got replaced, the current "second" are still larger than all historical "first" values:
+            current second (12) > current first (5) > all historical first values (... 10)
+
+            - If the "first" and "second" smallest got replaced: then we are looking at a entirely new triplet
+
+            - When we reach the else case, we will have:
+            current_third (13) > current second (12) > current first (5) > all historical first values. (... 10),
+            the true "first" element of the triplets is hidden in the historical first values.
             """
             if num <= first_smallest:
                 first_smallest = num
